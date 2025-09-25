@@ -7,3 +7,4 @@ all: $(PROJECT_DIRS)
 $(PROJECT_DIRS):
 	@echo "Building project in $@"
 	wasm-pack build --target web --out-dir ../assets/$(notdir $(patsubst %/,%,$@))/pkg $@
+	ls assets/$(notdir $(patsubst %/,%,$@))/pkg
