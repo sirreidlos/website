@@ -1,0 +1,33 @@
+name: "Deploy Shuttle.rs project"
+
+on:
+  push:
+    branches: [ "main" ]
+    paths:
+      - "src/**"
+      - "Cargo.toml"
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install cargo-binstall
+      uses: cargo-bins/cargo-binstall@v1.15.5
+
+    - name: Install cargo-shuttle
+      run: cargo binstall cargo-shuttle -y
+      shell: bash
+
+    - name: Login to shuttle
+      run: cargo shuttle login --api-key ${{ secrets.SHUTTLE_API_KEY }}
+      shell: bash
+
+    - name: Deploy to shuttle
+      run: cargo shuttle deploy
+      shell: bash
+      working-directory: "./"
