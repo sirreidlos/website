@@ -24,6 +24,14 @@ jobs:
     - name: Install cargo-shuttle
       run: cargo binstall cargo-shuttle -y
       shell: bash
+      
+    - name: Install wasm-pack
+      run: cargo binstall wasm-pack -y
+      shell: bash
+
+    - name: Build wasm projects
+      run: make all
+      shell: bash
 
     - name: Login to shuttle
       run: cargo shuttle login --api-key ${{ secrets.SHUTTLE_API_KEY }}
