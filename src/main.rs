@@ -1,7 +1,6 @@
 use axum::Router;
 use tower_http::services::ServeDir;
-use tracing::{info, Level};
-use tracing_subscriber::FmtSubscriber;
+use tracing::info;
 use walkdir::WalkDir;
 
 #[shuttle_runtime::main]
