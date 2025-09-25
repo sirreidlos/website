@@ -11,6 +11,7 @@ on:
 env:
   CARGO_TERM_COLOR: always
 
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -29,6 +30,6 @@ jobs:
       shell: bash
 
     - name: Deploy to shuttle
-      run: cargo shuttle deploy
+      run: cargo shuttle deploy --name website
       shell: bash
       working-directory: "./"
